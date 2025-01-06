@@ -59,6 +59,7 @@ void display() {
 }
 
 int8_t direction(int8_t currentDirection) {
+    printf("currentDirection: %d %d\n", currentDirection,JOY_up_pressed());
     if (JOY_up_pressed() && snake_game_gameboard[snakeHead + 8].part != 'b') {
         return 8; // go up
     }
@@ -136,7 +137,7 @@ int main(void) {
     uint16_t seed = 0;
     uint8_t score = 0;
     bool apple;
-    while (!JOY_Y_pressed()) {
+    while (!JOY_X_pressed()) {
         seed++;
         if (seed > 0xFFF0) {
             seed = 0;
@@ -162,7 +163,7 @@ int main(void) {
         Delay_Ms(700);
     }
     drawScore(score);
-    while (!JOY_Y_pressed()) {
+    while (!JOY_X_pressed()) {
         Delay_Ms(1);
         // wait for the button to be pressed
     }
