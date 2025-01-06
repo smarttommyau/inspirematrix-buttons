@@ -3,13 +3,13 @@ INCLUDES = -I../emulator -I../data -I.
 CFLAGS = -g -Wall -Wextra -Wshadow $(INCLUDES)
 LDFLAGS = 
 
-UNAME_S := $(shell uname -s)
+UNAME_S = Win
 ifeq ($(UNAME_S), Darwin)
     LDFLAGS += -framework CoreFoundation -framework ApplicationServices -pthread
 endif
 
-SRCS = tic-tac-toe.c
-TARGET = tic-tac-toe
+SRCS = whac-a-mole.c
+TARGET = whac-a-mole
 
 SRCS += $(wildcard ../emulator/*.c)
 ifneq ($(UNAME_S), Darwin)
