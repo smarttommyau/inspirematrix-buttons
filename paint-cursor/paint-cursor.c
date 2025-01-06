@@ -2,7 +2,6 @@
 #include "colors.h"
 #include "driver.h"
 #include "ws2812b_simple.h"
-
 #include <stdio.h>
 
 #define LED_PINS GPIOC, 2
@@ -24,7 +23,7 @@ int main(void) {
     WS2812BSimpleSend(LED_PINS, (uint8_t *)led_array, NUM_LEDS * 3);
     while (1) {
         clear();
-        int act_pressed = JOY_act_pressed();
+        int act_pressed = JOY_X_pressed();
         // move current position
         if (JOY_up_pressed()) {
             currentposition = (NUM_LEDS + currentposition + 8) % NUM_LEDS;
@@ -37,6 +36,18 @@ int main(void) {
         }
         if (JOY_right_pressed()) {
             currentposition = (NUM_LEDS + currentposition - 1) % NUM_LEDS;
+        }
+        if (JOY_top_left_pressed()) {
+            currentposition = (NUM_LEDS + currentposition + 9) % NUM_LEDS;
+        }
+        if (JOY_top_right_pressed()) {
+            currentposition = (NUM_LEDS + currentposition + 7) % NUM_LEDS;
+        }
+        if (JOY_bottom_left_pressed()) {
+            currentposition = (NUM_LEDS + currentposition - 7) % NUM_LEDS;
+        }
+        if (JOY_bottom_right_pressed()) {
+            currentposition = (NUM_LEDS + currentposition - 9) % NUM_LEDS;
         }
         int8_t button = matrix_pressed(ADC_read);
         if (button != -1) {
