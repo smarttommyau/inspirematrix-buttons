@@ -12,13 +12,15 @@
 
 press keyboard to control the matrix emulator, listing out the keys
 
-* I -> up
-* J -> left
-* K -> down
-* L -> right
-* P -> ACT
-* U -> XKey
-* O -> YKey
+* Y -> up
+* G -> left
+* N -> down
+* J -> right
+* H -> XKey (center)
+* T -> top left
+* U -> top right
+* B -> bottom left
+* M -> bottom right
 
 for the buttons on the matrix, it follows the coding writting on the circuit board
 ![circuit board](/inspire_matrix.jpeg)

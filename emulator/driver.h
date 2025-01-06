@@ -27,14 +27,18 @@ static inline bool is_key_pressed(char capitalkey) {
         GetAsyncKeyState((int)capitalkey); // windows.h requires capital letters
     return (result & 0x8000) != 0;
 }
-#define JOY_act_pressed() is_key_pressed('P')
-#define JOY_act_released() !is_key_pressed('P')
-#define JOY_up_pressed() is_key_pressed('I')
-#define JOY_down_pressed() is_key_pressed('K')
-#define JOY_left_pressed() is_key_pressed('J')
-#define JOY_right_pressed() is_key_pressed('L')
-#define JOY_X_pressed() is_key_pressed('U')
-#define JOY_Y_pressed() is_key_pressed('O')
+// #define JOY_act_pressed() is_key_pressed('P')
+// #define JOY_act_released() !is_key_pressed('P')
+#define JOY_up_pressed() is_key_pressed('Y')
+#define JOY_down_pressed() is_key_pressed('N')
+#define JOY_left_pressed() is_key_pressed('G')
+#define JOY_right_pressed() is_key_pressed('J')
+#define JOY_top_left_pressed() is_key_pressed('T')
+#define JOY_top_right_pressed() is_key_pressed('U')
+#define JOY_bottom_left_pressed() is_key_pressed('B')
+#define JOY_bottom_right_pressed() is_key_pressed('M')
+#define JOY_X_pressed() is_key_pressed('H')
+// #define JOY_Y_pressed() is_key_pressed('Y')
 
 uint16_t ADC_read(void) {
     // If pressed A, B, C, D, wait for second input 0-9 and A-F
@@ -81,14 +85,18 @@ uint16_t ADC_read(void) {
 #define SystemInit() pthread_init()
 #define Delay_Ms(milliseconds) usleep((milliseconds) * 1000)
 #define Delay_Us(microseconds) usleep(microseconds)
-#define JOY_act_pressed() is_key_pressed(P_Key)
-#define JOY_act_released() !is_key_pressed(P_Key)
-#define JOY_up_pressed() is_key_pressed(I_Key)
-#define JOY_down_pressed() is_key_pressed(K_Key)
-#define JOY_left_pressed() is_key_pressed(J_Key)
-#define JOY_right_pressed() is_key_pressed(L_Key)
-#define JOY_X_pressed() is_key_pressed(U_Key)
-#define JOY_Y_pressed() is_key_pressed(O_Key)
+// #define JOY_act_pressed() is_key_pressed(P_Key)
+// #define JOY_act_released() !is_key_pressed(P_Key)
+#define JOY_up_pressed() is_key_pressed(Y_Key)
+#define JOY_down_pressed() is_key_pressed(N_Key)
+#define JOY_left_pressed() is_key_pressed(G_Key)
+#define JOY_right_pressed() is_key_pressed(J_Key)
+#define JOY_top_left_pressed() is_key_pressed(T_Key)
+#define JOY_top_right_pressed() is_key_pressed(U_Key)
+#define JOY_bottom_left_pressed() is_key_pressed(B_Key)
+#define JOY_bottom_right_pressed() is_key_pressed(M_Key)
+#define JOY_X_pressed() is_key_pressed(H_Key)
+// #define JOY_Y_pressed() is_key_pressed(O_Key)
 
 uint16_t ADC_read(void) {
     // If pressed A, B, C, D, wait for second input 0-9 and A-F
@@ -120,11 +128,14 @@ uint16_t ADC_read(void) {
 #endif
 
 #define JOY_pad_pressed()                                                                \
-    (JOY_up_pressed() || JOY_down_pressed() || JOY_left_pressed() || JOY_right_pressed())
+    (JOY_up_pressed() || JOY_down_pressed() || JOY_left_pressed() || JOY_right_pressed()|| \
+        JOY_top_left_pressed() || JOY_top_right_pressed() || JOY_bottom_left_pressed() ||   \
+        JOY_bottom_right_pressed())
 #define JOY_pad_released()                                                               \
     (!JOY_up_pressed() && !JOY_down_pressed() && !JOY_left_pressed() &&                  \
-        !JOY_right_pressed())
-#define JOY_all_released() (JOY_act_released() && !JOY_pad_released())
+        !JOY_right_pressed() && !JOY_top_left_pressed() && !JOY_top_right_pressed() &&   \
+        !JOY_bottom_left_pressed() && !JOY_bottom_right_pressed())
+#define JOY_all_released() (JOY_act_released() && !JOY_pad_releasePad())
 
 void ADC_init(void) {
     // Do nothing
